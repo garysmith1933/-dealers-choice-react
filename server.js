@@ -13,15 +13,16 @@ const Team = sequelize.define('team', {
     }
 })
 
-
-
 const express = require("express")
 const app = express()
+const path = require('path')
+
+app.get('/', async(req,res) => res.sendFile(path.join(__dirname, 'index.html')))
 
 
 app.get('/api/teams', async(req,res,next) => {
     try {
-        
+        res.send(await Team.findAll())
     } catch(err) {
         
     }
